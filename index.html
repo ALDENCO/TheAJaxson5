@@ -28,7 +28,12 @@
             -->
         </form>
 
-        <img id="gif" v-bind:src="imgSrc" v-if="imgSrc"/>
+        <img src ={gif.url} id="gif" v-bind:src="imgSrc" v-if="imgSrc"/>
+    
+
+
+    
+      
         <!-- TODO show the user a "Loading..." message if we're currently loading -->
         <p id="feedback" v-if="errorMessage">
             {{ errorMessage }}
