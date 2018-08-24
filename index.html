@@ -10,7 +10,7 @@
 
         <form>
             <label>What kind of Jackson 5 related gif do you want?</label>
-            <input name="tag" type="text"/>
+            <input name="tag" type="text" v-if="tagValue"/>
             <!--
                 TODO
                 Use some Vue.js magic to keep the input above in sync
@@ -28,7 +28,7 @@
             -->
         </form>
 
-        <img src ={gif.url} id="gif" v-bind:src="imgSrc" v-if="imgSrc"/>
+        <img v-bind:src ="imgSrc" id="gif" v-if="imgSrc"/>
     
 
 
