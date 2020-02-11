@@ -19,9 +19,9 @@ var ajaxson5 = new Vue({
             if (this.captchaInput === "5" || this.captchaInput === "five")
             { alert("legit");
         }
-            if (this.captchaInput !== "5" || this.captchaInput !== "five")
-            { alert("1..2..3..4..fifffff?");
-        }
+                else (this.captchaInput !== "5" || this.captchaInput !== "five")
+                { alert("how many jacksons?");
+            }
         },
     },
 
