@@ -1,70 +1,60 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>The AJAXson 5</title>
-    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/styles.css" />
-</head>
-<body>
-    <div id="mount-point">
-        <h1>The AJAXson 5</h1>
+   <meta charset="utf-8"/>
+   <head>
+      <title>The AJAXson 5</title>
+      <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+      <link rel="stylesheet" href="css/styles.css" />
+   </head>
+   <body>
+      <div id="mount-point">
+         <h1>The AJAXson 5</h1>
+         <form>
+            <div class="form-group">
+               <label>What kind of Jackson 5 related gif do you want?</label>
+               <input class="form-control" type="text" v-model="tagValue"/>
+               <br>
+               <!--
+                  TODO
+                  Use some Vue.js magic to keep the input above in sync
+                  with tagValue over in request-gif.js
+                  -->
+               <input
+                  class="btn-lg btn-primary"
+                  type="submit"
+                  value="Get my Gif!"
+                  @click.prevent="fetchGif()"
+                  />
+               <!--
+                  @click.prevent is a shorthand for saying
+                  "add a click event listener, and prevent default"
+                  It's a Vue.js thing, not something built into JS or HTML-->
+               <br>
+               <br>
+               <label> How many Jackson 5?</label> 
+               <input class="form-control" type="text" v-model="cap"/>
+               <br>
+               <input
+                  class="btn-lg btn-primary"
+                  type="submit"
+                  value="Captcha!"
+                  @click="Captcha()"
+                  />
+               </div>
+         </form>
+       
+         <img v-bind:src ="imgSrc" id="gif" v-if="imgSrc"/>
+         
+         <!-- TODO show the user a "Loading..." message if we're currently loading -->
+         <p v-if="errorMessage">
+            {{ errorMessage }} 
+         </p>
 
-        <form>
-        <div class="form-group">
-            <label>What kind of Jackson 5 related gif do you want?</label>
-            <input class="form-control" type="text" v-model="tagValue"/>
-            <br>
-            <!--
-                TODO
-                Use some Vue.js magic to keep the input above in sync
-                with tagValue over in request-gif.js
-            -->
-            <input
-            class="btn-lg btn-primary"
-                type="submit"
-                value="Get my Gif!"
-                @click.prevent="fetchGif()"
-            />
-            <!--
-                @click.prevent is a shorthand for saying
-                "add a click event listener, and prevent default"
-                It's a Vue.js thing, not something built into JS or HTML-->
-                <br>
-                 
-                
-                
-                <br>
-                
-                <label> How many Jackson 5?</label> 
-                <input class="form-control" type="text" v-model="cap"/>
-                <br>
-                <input
-                class="btn-lg btn-primary"
-                type="submit"
-                value="Captcha!"
-                @click="captchaCorrect()"
-                />
-               
-                    
-                      
-            
-        </form>
-        </div>
-        <img v-bind:src ="imgSrc" id="gif" v-if="imgSrc"/>
-    
-
-
-    
-      
-        <!-- TODO show the user a "Loading..." message if we're currently loading -->
-        <p id="feedback" v-if="errorMessage">
-            {{ errorMessage }} </p>
-
-            <p else>
-                loading...
-        </p>
-    </div>
-    <script type="text/javascript" src="request-gif.js"></script>
-</body>
+         <p v-else="loading"> 
+            {{ loading }}
+         </p>
+      </div>
+      <script type="text/javascript" src="request-gif.js"></script>
+   </body>
 </html>
